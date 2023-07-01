@@ -1,2 +1,2 @@
-# bookmarks
-Social website
+# Bookmarks
+Социальное приложение, которое реализовано в учебных целях
