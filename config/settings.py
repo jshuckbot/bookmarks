@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -25,8 +24,7 @@ SECRET_KEY = "django-insecure-ep=9b(=u8-t=3kfaomfk!gey2#f#i@dzsvy6*+&rk)sjd%7edj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["mysite.com", "localhost", "127.0.0.1"]
 
 # Application definition
 
@@ -38,6 +36,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "social_django",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -70,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -80,7 +79,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -100,7 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -111,7 +108,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -132,4 +128,11 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend", "accountapp.authentication.EmailAuthBackend")
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "accountapp.authentication.EmailAuthBackend",
+    "social_core.backends.google.GoogleOAuth2",
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ""
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ""
