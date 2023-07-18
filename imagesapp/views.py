@@ -21,8 +21,8 @@ def image_create(request):
             # Перенаправить к представлению детальной
             # информации о только, что созданном элементе
             return redirect(new_image.get_absolute_url())
-        else:
-            # скомпоновать форму с данными, предоставленными букмарком методом GET
-            form = ImageCreateForm(data=request.GET)
+    else:
+        # скомпоновать форму с данными, предоставленными букмарком методом GET
+        form = ImageCreateForm(data=request.GET)
 
-        return render(request, "images/image/create.html", {"section": "images", "form": form})
+    return render(request, "imagesapp/image/create.html", {"section": "images", "form": form})

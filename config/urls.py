@@ -7,6 +7,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accountapp/", include("accountapp.urls")),
     path("social-auth/", include("social_django.urls", namespace="social")),
+    path("imagesapp/", include("imagesapp.urls", namespace="imagesapp")),
 ]
 
 if settings.DEBUG:
