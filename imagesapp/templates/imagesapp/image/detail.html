@@ -6,7 +6,7 @@
     <h1>{{ image.title }}</h1>
     {% load thumbnail %}
     <img src="{% thumbnail image.image 300x0 %}" alt="image-detail" class="image-detail">
-    {% with total_likes=image.users_like.count %}
+    {% with total_likes=image.user_like.count %}
         <div class="image-info">
             <div>
                 <span class="count">{{ total_likes }} like{{ total_likes|pluralize }}</span>
