@@ -66,7 +66,7 @@
                 likeButton.dataset.action = action;
                 likeButton.innerHTML = action;
 
-                var likeCount = document.querySelector('span.count.total');
+                var likeCount = document.querySelector('span.count .total');
                 var totalLikes = parseInt(likeCount.innerHTML);
                 likeCount.innerHTML = previousAction === 'like' ? totalLikes + 1: totalLikes - 1;
             }
