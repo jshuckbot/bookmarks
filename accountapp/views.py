@@ -8,6 +8,7 @@ from django.views.decorators.http import require_POST
 
 from accountapp.forms import LoginForm, ProfileEditForm, UserEditForm, UserRegistrationForm
 from accountapp.models import Contact, Profile
+from actionsapp import models as actionsapp_models
 from actionsapp.utils import create_action
 
 
@@ -30,7 +31,16 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    return render(request, "accountapp/dashboard.html", {"section": "dashboard"})
+    # По умолчанию показать все действия
+    actions = actionsapp_models.Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list("id", flat=True)
+
+    if following_ids:
+        # Если пользователь подписан на других, то
+        # извлечь только их действия
+        actions = actions.filter(user_id__in=following_ids)[:10]
+
+    return render(request, "accountapp/dashboard.html", {"section": "dashboard", "actions": actions})
 
 
 def register(request):
