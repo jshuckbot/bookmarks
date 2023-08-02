@@ -56,7 +56,7 @@ def register(request):
             # Сохраняем объект пользователя
             new_user.save()
             Profile.objects.create(user=new_user)
-            create_action(request.user, "has created an account")
+            create_action(new_user, "has created an account")
             return render(request, "accountapp/register_done.html", {"new_user": new_user})
     else:
         user_form = UserRegistrationForm()
