@@ -38,7 +38,9 @@ def dashboard(request):
     if following_ids:
         # Если пользователь подписан на других, то
         # извлечь только их действия
-        actions = actions.filter(user_id__in=following_ids)[:10]
+        actions = actions.filter(user_id__in=following_ids)
+
+    actions = actions.select_related("user", "user__profile")[:10]
 
     return render(request, "accountapp/dashboard.html", {"section": "dashboard", "actions": actions})
 
